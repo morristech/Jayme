@@ -1,10 +1,10 @@
+os:
+- linux
+- osx
+language: generic
+sudo: required
+dist: trusty
 osx_image: xcode8
-language: objective-c
-
-script: 
-- "xcodebuild -sdk iphonesimulator clean"
-- "xcodebuild -scheme Jayme -project Jayme.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0' build-for-testing"
-- "xcodebuild -scheme Jayme -project Jayme.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0' test-without-building"
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+script:
+- eval "$(curl -sL https://swift.vapor.sh/ci)"
+- eval "$(curl -sL https://swift.vapor.sh/codecov)"
